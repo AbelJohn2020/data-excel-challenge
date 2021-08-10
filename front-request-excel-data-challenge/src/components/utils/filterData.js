@@ -18,3 +18,11 @@ export const getDataByMonth = (data) => {
         return data;
     }
 }
+
+export const getNameMonth = (month) => {
+    const invertDate = month.map( element => element['Mes'].split("-").reverse().join("-"));
+    const getStringMonth = JSON.stringify(...new Set(invertDate));
+    const getDate = new Date(getStringMonth)
+    const getMonth = getDate.toLocaleDateString('default', {month: 'long'})
+    return getMonth;
+}

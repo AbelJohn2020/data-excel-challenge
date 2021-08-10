@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getDataByMonth } from './components/utils/filterData';
+import { getDataByMonth, getNameMonth } from './components/utils/filterData';
 import { getExcelData } from './components/utils/utils';
 import nextId from "react-id-generator";
 import Tables from './components/Table/Tables';
@@ -31,8 +31,13 @@ function App() {
           : <div>
               {
                 months.map( month => (
-                  <Tables key={nextId()} month={month} />
-                ))
+                    <div key={nextId()}>
+                      <div>{
+                        getNameMonth(month)
+                      }</div>
+                      <Tables month={month} />
+                    </div>
+                  ))
               }
             </div>
       }
