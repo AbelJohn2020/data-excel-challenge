@@ -3,6 +3,7 @@ import { getDataByMonth, getNameMonth } from './components/utils/filterData';
 import { getExcelData } from './components/utils/utils';
 import nextId from "react-id-generator";
 import Tables from './components/Table/Tables';
+import OrganizationChart from './components/OrganizationChart/OrganizationChart';
 
 function App() {
   const [excelData, setExcelData] = useState({
@@ -32,12 +33,18 @@ function App() {
               {
                 months.map( month => (
                     <div key={nextId()}>
-                      <div>{
-                        getNameMonth(month)
-                      }</div>
+                      <div>{getNameMonth(month)}</div>
                       <Tables month={month} />
                     </div>
                   ))
+              }
+              {
+                months.map(month => (
+                  <div key={nextId()}>
+                    <div>{getNameMonth(month)}</div>
+                    <OrganizationChart month={month} />
+                  </div>
+                ))
               }
             </div>
       }
