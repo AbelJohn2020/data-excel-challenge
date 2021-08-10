@@ -5,6 +5,7 @@ import nextId from "react-id-generator";
 import Tables from './components/Table/Tables';
 import OrganizationChart from './components/OrganizationChart/OrganizationChart';
 import './App.css';
+import './components/UI/loading.css';
 
 function App() {
   const [excelData, setExcelData] = useState({
@@ -40,7 +41,22 @@ function App() {
     <div className={shadow ? 'app darkApp' : 'app lightApp'}>
       {
         loading
-          ? <div>Cargando...</div>
+          ? <div className="loading">
+              <div class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
           : <div>
               <div className="buttonsBox">
                 <button 
