@@ -33,7 +33,7 @@ function App() {
               {
                 months.map( month => (
                     <div key={nextId()}>
-                      <div>{getNameMonth(month)}</div>
+                      <div>{getNameMonth(month)}, 2020</div>
                       <Tables month={month} />
                     </div>
                   ))

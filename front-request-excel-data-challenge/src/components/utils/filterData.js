@@ -27,6 +27,13 @@ export const getNameMonth = (month) => {
     return getMonth;
 }
 
+export const getNameMonthTable = (month) => {
+    const invertDate = month.split("-").reverse().join("-");
+    const getDate = new Date(invertDate);
+    const getMonth = getDate.toLocaleDateString('default', {month: 'long'})
+    return getMonth;
+}
+
 export const removeRepeatStrings = (arrFilter) => {
     const setarr = new Set(arrFilter)
     return [...setarr];

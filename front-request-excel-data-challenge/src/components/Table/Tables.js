@@ -1,5 +1,5 @@
 import React from 'react'
-import { getSalary, getSalaryByAreas } from '../utils/filterData';
+import { getNameMonthTable, getSalary, getSalaryByAreas } from '../utils/filterData';
 import { ContainerTable, Table, TdBody, TdBodyNubers, ThHeader, TrBody, TrHeader } from './TablesStyles';
 
 const Tables = ({month}) => {
@@ -24,7 +24,7 @@ const Tables = ({month}) => {
                     {
                         month.map( reported => (
                             <TrBody key={Number(reported.ID)}>
-                                <ThHeader>{reported.Mes}</ThHeader>
+                                <ThHeader>{getNameMonthTable(reported.Mes)}</ThHeader>
                                 <TdBody>{reported['Nombre ']}</TdBody>
                                 <TdBodyNubers>{reported.ID}</TdBodyNubers>
                                 <TdBodyNubers>{reported['Fecha de ingreso']}</TdBodyNubers>

@@ -1,5 +1,7 @@
-import React from 'react'
-import { getSalaryByAreas, removeRepeatStrings } from '../utils/filterData';
+import React from 'react';
+import { Tree, TreeNode } from 'react-organizational-chart';
+import { colors } from '../UI/colors';
+import { getSalary, getSalaryByAreas, removeRepeatStrings } from '../utils/filterData';
 
 const OrganizationChart = ({month}) => {
 
@@ -17,7 +19,7 @@ const OrganizationChart = ({month}) => {
     }
 
     const getSubareas = (str) => {
-        const getArea = month.filter( elements => elements['División'] === str);
+        const getArea = month.filter( elements => elements['Area'] === str);
         const getNamesubarea = getArea.map( elements => elements['Subarea']);
         const removeRepeatSubareas = removeRepeatStrings(getNamesubarea);
         return removeRepeatSubareas;
@@ -52,7 +54,7 @@ const OrganizationChart = ({month}) => {
                 area: getAreas(department).map(area => {
                     return ({
                         area: area,
-                        subarea: getSubareas(department).map( element => {
+                        subarea: getSubareas(area).map( element => {
                             return({
                                 subarea: element,
                                 workers: getWorkersInformation(element),
@@ -69,9 +71,59 @@ const OrganizationChart = ({month}) => {
     console.log(getArrVisualMap())
 
     return (
-        <div>
-            
-        </div>
+        <Tree
+            lineWidth={'3px'}
+            lineColor={colors.blue}
+            lineBorderRadius={'6px'}
+            label={<ul>
+                <li>Departamentos</li>
+                <li>total pagado {getSalary(month)}</li>
+            </ul>}
+        >
+
+            {
+                getArrVisualMap().map( ({department, salary, area}) => (
+                    <TreeNode key={department} label={<ul>
+                        <li>Departamento de {department}</li>
+                        <li>Total pagado {salary}</li>
+                    </ul>}>
+                        {
+                            area.map( ({area, subarea}) => (
+                                <TreeNode key={area} label={
+                                    (area === 'Reagional')
+                                        ?   <div> Area {area} </div>
+                                        :   <div>Area de {area}</div>
+                                }>
+                                    {
+                                        subarea.map(({subarea, workers}) => (
+                                            <TreeNode key={subarea} label={
+                                                (subarea === 'Clientes')
+                                                    ? <div>Subarea de {subarea}</div>
+                                                    : <div>Subarea {subarea}</div>
+                                            }>
+                                                {
+                                                    workers.map( ({name, id, firstDay, position, salary, idLider}) => (
+                                                        <TreeNode key={id} label={
+                                                        <ul>
+                                                            <li>Leader: {name}</li>
+                                                            <li>ID: {idLider}</li>
+                                                            <li>Posición: {position}</li>
+                                                            <li>Primer día: {firstDay}</li>
+                                                            <li>Sueldo: {salary}</li>
+                                                        </ul>
+                                                    } />
+                                                    ))
+                                                }
+                                            </TreeNode>
+                                        ))
+                                    }
+                                </TreeNode>
+                            ))
+                        }
+                    </TreeNode>
+                ))
+            }
+        </Tree>
     )
 }
 
