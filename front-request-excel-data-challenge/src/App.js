@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import Table from './components/Table/Table';
+import { getDataByMonth } from './components/utils/filterData';
 import { getExcelData } from './components/utils/utils';
+import nextId from "react-id-generator";
 
 function App() {
   const [excelData, setExcelData] = useState({
     data: [],
     loading: true,
   });
+
+  const { data, loading } = excelData;
 
   useEffect(() => {
     getExcelData()
@@ -16,11 +21,15 @@ function App() {
       .catch( e => e);
   }, []);
 
-  console.log(excelData)
+  const months = getDataByMonth(data);
 
   return (
     <div className="App">
-      Read data
+      {
+        months.map( month => (
+          <Table key={nextId()} month={month} />
+        ))
+      }
     </div>
   );
 }
