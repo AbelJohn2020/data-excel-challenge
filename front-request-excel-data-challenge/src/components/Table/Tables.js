@@ -1,4 +1,5 @@
 import React from 'react'
+import { getSalary, getSalaryByAreas } from '../utils/filterData';
 import { ContainerTable, Table, TdBody, TdBodyNubers, ThHeader, TrBody, TrHeader } from './TablesStyles';
 
 const Tables = ({month}) => {
@@ -36,6 +37,42 @@ const Tables = ({month}) => {
                             </TrBody>
                         ))
                     }
+                    <TrBody>
+                        <ThHeader>Total ventas</ThHeader>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBodyNubers>{getSalaryByAreas(month, 'Ventas')}</TdBodyNubers>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                    </TrBody>
+                    <TrBody>
+                        <ThHeader>Total operaciones</ThHeader>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBodyNubers>{getSalaryByAreas(month, 'Operaciones')}</TdBodyNubers>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                    </TrBody>
+                    <TrBody>
+                        <ThHeader>Total pagado</ThHeader>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBodyNubers>{getSalary(month)}</TdBodyNubers>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                        <TdBody></TdBody>
+                    </TrBody>
                 </tbody>
             </Table>
         </ContainerTable>

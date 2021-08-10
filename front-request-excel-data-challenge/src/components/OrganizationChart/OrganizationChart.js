@@ -1,11 +1,7 @@
 import React from 'react'
+import { removeRepeatStrings } from '../utils/filterData';
 
 const OrganizationChart = ({month}) => {
-
-    const removeRepeatStrings = (arrFilter) => {
-        const setarr = new Set(arrFilter)
-        return [...setarr];
-    }
 
     const departments = () => {
         const getDepartments = month.map(elements => elements['División']);
@@ -20,7 +16,14 @@ const OrganizationChart = ({month}) => {
         return removeRepeatAreas;
     }
 
-    console.log(getAreas('Ventas'))
+    const getSubareas = (str) => {
+        const getArea = month.filter( elements => elements['División'] === str);
+        const getNamesubarea = getArea.map( elements => elements['Subarea']);
+        const removeRepeatSubareas = removeRepeatStrings(getNamesubarea);
+        return removeRepeatSubareas;
+    }
+
+    console.log(getSubareas('Ventas'))
 
     return (
         <div>

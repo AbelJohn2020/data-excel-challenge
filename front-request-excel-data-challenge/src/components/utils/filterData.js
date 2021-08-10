@@ -26,3 +26,23 @@ export const getNameMonth = (month) => {
     const getMonth = getDate.toLocaleDateString('default', {month: 'long'})
     return getMonth;
 }
+
+export const removeRepeatStrings = (arrFilter) => {
+    const setarr = new Set(arrFilter)
+    return [...setarr];
+}
+
+export const getSalary = (month) => {
+    const getSalaryStrings = month.map( ({'Sueldo  bruto' : salary}) => salary);
+    const getSalaryNumbers = getSalaryStrings.map( num => Number(num));
+    const getTotalSalaries = getSalaryNumbers.reduce( (a, b) => a+b, 0);
+    return getTotalSalaries;
+}
+
+export const getSalaryByAreas = (month, str) => {
+    const getArea = month.filter( elements => elements['División'] === str);
+    const getSalaryStrings = getArea.map( elements => elements['Sueldo  bruto']);
+    const getSalaryNumbers = getSalaryStrings.map( num => Number(num));
+    const getTotalSalaries = getSalaryNumbers.reduce( (a, b) => a+b, 0);
+    return getTotalSalaries;
+}
