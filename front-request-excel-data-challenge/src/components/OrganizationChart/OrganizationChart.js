@@ -69,8 +69,6 @@ const OrganizationChart = ({month, shadow}) => {
         return OrganizationChartArr;
     }
 
-    console.log(getArrVisualMap())
-
     return (
         <Div shadow={shadow}>
             <Tree
