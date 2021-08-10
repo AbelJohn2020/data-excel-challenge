@@ -2,10 +2,10 @@ import React from 'react'
 import { getNameMonthTable, getSalary, getSalaryByAreas } from '../utils/filterData';
 import { ContainerTable, Table, TdBody, TdBodyNubers, ThHeader, TrBody, TrHeader } from './TablesStyles';
 
-const Tables = ({month}) => {
+const Tables = ({month, shadow}) => {
     return (
         <ContainerTable>
-            <Table>
+            <Table shadow={shadow}>
                 <thead>
                     <TrHeader>
                         <ThHeader cope="col">Mes</ThHeader>
@@ -23,7 +23,7 @@ const Tables = ({month}) => {
                 <tbody>
                     {
                         month.map( reported => (
-                            <TrBody key={Number(reported.ID)}>
+                            <TrBody key={Number(reported.ID)} shadow={shadow}>
                                 <ThHeader>{getNameMonthTable(reported.Mes)}</ThHeader>
                                 <TdBody>{reported['Nombre ']}</TdBody>
                                 <TdBodyNubers>{reported.ID}</TdBodyNubers>
@@ -37,7 +37,7 @@ const Tables = ({month}) => {
                             </TrBody>
                         ))
                     }
-                    <TrBody>
+                    <TrBody shadow={shadow}>
                         <ThHeader>Total ventas</ThHeader>
                         <TdBody></TdBody>
                         <TdBody></TdBody>
@@ -49,7 +49,7 @@ const Tables = ({month}) => {
                         <TdBody></TdBody>
                         <TdBody></TdBody>
                     </TrBody>
-                    <TrBody>
+                    <TrBody shadow={shadow}>
                         <ThHeader>Total operaciones</ThHeader>
                         <TdBody></TdBody>
                         <TdBody></TdBody>
@@ -61,7 +61,7 @@ const Tables = ({month}) => {
                         <TdBody></TdBody>
                         <TdBody></TdBody>
                     </TrBody>
-                    <TrBody>
+                    <TrBody shadow={shadow}>
                         <ThHeader>Total pagado</ThHeader>
                         <TdBody></TdBody>
                         <TdBody></TdBody>
